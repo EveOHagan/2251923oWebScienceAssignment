@@ -13,3 +13,4 @@ Step 3 - The name of the collection and database also need to be change
 
 ### Running the Code - kmeansclustering.py
 
+Note: Within the file contains functionality to write code to a file - this is optional and can be uncommented 
