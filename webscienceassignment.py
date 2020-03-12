@@ -26,10 +26,10 @@ keywords = ['brexit', 'boris', '#brexit']
 language = ['en']
 
 # Values obtained when created Twitter App.
-consumer_key = "Mhcmq2c5pfNjulBEfeuZ54qIq"
-consumer_secret = "hnOFHWFbmYbokPviF4aEkvRjXZK6b7E669CDK24NtzngiRYukT"
-access_token = "1227939816723091456-ObA2kxyvHN6JTA6kncXArsOJJxkMMp"
-access_token_secret = "GUoyemYR3F7kEl54Db9c3kMdZjLxX9b5DblZaY7ZdxjsA"
+consumer_key = ""
+consumer_secret = ""
+access_token = ""
+access_token_secret = ""
 
 # Tweets from the stream and only storing important fields to dataBase
 class StdOutListener(StreamListener):
