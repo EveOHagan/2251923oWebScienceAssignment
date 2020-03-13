@@ -52,11 +52,34 @@ class StdOutListener(StreamListener):
         # Convert the timestamp given by Twitter to a date object called "created" ensuring simpler manipulation in MongoDB.
             created = datetime.datetime.strptime(dateTime, '%a %b %d %H:%M:%S +0000 %Y')
 
+            # Initialise the REST API
+            # Write to file the followers of each user
+            list_of_followers = []
+
+            file = open("/Users/eveohagan/followers.txt","a+")
+            current_cursor = tweepy.Cursor(api.followers_ids, screen_name=username, count=10)
+            current_followers = current_cursor.iterator.next()
+            list_of_followers.extend(current_followers)
+            next_cursor_id = current_cursor.iterator.next_cursor
+
+            while(next_cursor_id!=0):
+                current_cursor = tweepy.Cursor(self.api.followers_ids, screen_name=username, count=10,cursor=next_cursor_id)
+                current_followers=current_cursor.iterator.next()
+                list_of_followers.extend(current_followers)
+                next_cursor_id = current_cursor.iterator.next_cursor
+               
+            file.write(list_of_followers)
+            file.close()  
+
+
         # Load extracted Tweet data into the variable that will be stored into the DB
             tweet = {'id':tweet_id, 'username':username, 'followers':followers, 'text':text, 'hashtags':hashtags, 'language':language, 'created':created}
 
         # Save the refined Tweet data to MongoDB
             collection.save(tweet)
+
+
+
 
         # Print the username / text to your console in realtime as they are pulled from stream
             print (username + ':' + ' ' + text)
